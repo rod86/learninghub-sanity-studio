@@ -21,6 +21,8 @@
 # Misc
 .DS_Store
 *.pem
+.idea
+.vscode
 
 # Typescript
 *.tsbuildinfo
