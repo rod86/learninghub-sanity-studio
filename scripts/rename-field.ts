@@ -1,24 +1,42 @@
-// npx sanity exec migrations/remove-field.ts --with-user-token
-
+// 
+// sanity exec scripts/rename-field.ts --with-user-token  -- --type=tag --oldField=customName --newField=name
+import {parseArgs} from 'node:util'
 import { getCliClient } from 'sanity/cli'
 import { Transaction } from '@sanity/client'
 import { SanityDocument } from 'sanity';
-import { DocumentPatch, RemoveFieldsPatch } from './types';
+import { DocumentPatch, RenameFieldsPatch } from './types';
 
-const type = 'tag';
-const field = 'isHome';
+const args = process.argv.slice(2);
 
-type Patch = DocumentPatch<RemoveFieldsPatch>;
+const result = parseArgs({
+    args,
+    options: {
+        type: { type: 'string' },
+        oldField: { type: 'string' },
+        newField: { type: 'string' },
+    }
+});
+
+if (result.values.type == null || result.values.oldField == null || result.values.newField == null) {
+    throw new Error('Missing required arguments');
+}
+
+const { type, oldField: fieldOldName, newField: fieldNewName } = result.values;
+
+type Patch = DocumentPatch<RenameFieldsPatch>;
 
 const client = getCliClient();
 
-const fetchDocuments = () => client.fetch(`*[_type == "${type}" && defined(${field})] { _id, _rev }`);
+const fetchDocuments = () => client.fetch(`*[_type == "${type}" && defined(${fieldOldName})] { _id, _rev, ${fieldOldName} }`);
 
 const buildDocumentPatch = (doc: SanityDocument): Patch => {
     return {
         id: doc._id,
         patch: {
-            unset: [field],
+            set: {
+                [fieldNewName]: doc[`${fieldOldName}`]
+            },
+            unset: [`${fieldOldName}`],
             ifRevisionID: doc._rev
         }
     };
