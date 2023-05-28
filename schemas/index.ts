@@ -3,7 +3,6 @@ import CourseSchema from './collections/course'
 import contentType from './types/contentType'
 import tagType from './types/tagType'
 import siteSettings from './singletons/settings'
-import seoSettings from './singletons/seo'
 
 export const schemaTypes = [
 	Tag,
@@ -11,5 +10,4 @@ export const schemaTypes = [
 	contentType,
   	tagType,
   	siteSettings,
-	seoSettings,
 ]
