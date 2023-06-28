@@ -1,13 +1,18 @@
-import Tag from './collections/tag'
-import CourseSchema from './collections/course'
+import tag from './collections/tag'
+import course from './collections/course'
 import contentType from './types/contentType'
 import tagType from './types/tagType'
 import siteSettings from './singletons/settings'
+import levelType from './types/levelType'
 
 export const schemaTypes = [
-	Tag,
-	CourseSchema,
-	contentType,
+  // types
+    contentType,
   	tagType,
+    levelType,
+
+  	// collections
+	tag,
+	course,
   	siteSettings,
 ]

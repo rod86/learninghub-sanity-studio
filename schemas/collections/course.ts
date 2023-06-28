@@ -42,6 +42,18 @@ export default defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
+			name: 'level',
+			title: 'Level',
+			type: 'level',
+			validation: (Rule) => Rule.required()
+		}),
+	  	defineField({
+			name: 'durationMinutes',
+			title: 'Duration Time (minutes)',
+			type: 'number',
+			validation: (Rule) => Rule.integer().greaterThan(0),
+		}),
+		defineField({
 			name: 'url',
 			title: 'URL',
 			type: 'url',
