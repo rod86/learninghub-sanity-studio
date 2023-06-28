@@ -1,5 +1,22 @@
 {
-  "extends": [
-    "@sanity/eslint-config-studio"
-  ]
+    "extends": [
+        "@sanity/eslint-config-studio"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "semi": ["error", "always"],
+        "no-console": "warn",
+        "no-alert": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "quotes": ["error", "single"],
+        "prefer-template": "error"
+    },
+    "overrides": [
+        {
+            "files": ["scripts/*.ts"],
+            "rules": {
+                "no-console": "off"
+            }
+        }
+    ]
 }

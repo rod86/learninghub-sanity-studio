@@ -6,14 +6,14 @@ interface SingletonType {
 
 
 export const singletonTypes: SingletonType[] = [
-	{
-		schemaType: "siteSettings",
-		title: "Site"
-	},
+    {
+        schemaType: 'siteSettings',
+        title: 'Site'
+    },
 ];
 
 export const singletonActions = new Set([
-	"publish",
-	"discardChanges",
-	"restore",
+    'publish',
+    'discardChanges',
+    'restore',
 ]);

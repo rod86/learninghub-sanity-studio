@@ -1,8 +1,8 @@
 // 
 // sanity exec scripts/rename-field.ts --with-user-token  -- --type=tag --oldField=customName --newField=name
-import {parseArgs} from 'node:util'
-import { getCliClient } from 'sanity/cli'
-import { Transaction } from '@sanity/client'
+import {parseArgs} from 'node:util';
+import { getCliClient } from 'sanity/cli';
+import { Transaction } from '@sanity/client';
 import { SanityDocument } from 'sanity';
 import { DocumentPatch, RenameFieldsPatch } from './types';
 
@@ -60,7 +60,7 @@ const main = async(): Promise<void> => {
     }
 
     console.log(
-        `Migrating batch:\n %s`,
+        'Migrating batch:\n %s',
         patches.map((patch: Patch) => `${patch.id} => ${JSON.stringify(patch.patch)}`).join('\n')
     );
 
